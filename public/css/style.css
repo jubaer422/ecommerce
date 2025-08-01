@@ -1,0 +1,100 @@
+/* Thin Header */
+.top-header {
+    background: linear-gradient(90deg, #dc3545, #d63384);
+    font-size: 14px;
+}
+
+.top-header a {
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+.social-icon {
+    width: 30px;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.social-icon:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Main Header */
+.main-header {
+    background-color: #fff;
+}
+
+.category-nav a {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.category-nav a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #dc3545;
+    transition: width 0.3s;
+}
+
+.category-nav a:hover::after {
+    width: 100%;
+}
+
+/* Search Bar */
+.square-input {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 6px 12px;
+    transition: all 0.3s;
+}
+
+.square-input:focus {
+    outline: none;
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.1rem rgba(220, 53, 69, 0.25);
+}
+
+/* Hover Popup */
+.hover-popup {
+    display: none;
+    position: absolute;
+    top: 110%;
+    right: 0;
+    background-color: #dc3545;
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    white-space: nowrap;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+#signin-btn:hover + .hover-popup {
+    display: block;
+}
+
+/* Sign In & Cart Buttons */
+.btn-outline-primary, .btn-outline-secondary {
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background 0.3s, color 0.3s;
+}
+
+.btn-outline-primary:hover {
+    background-color: #dc3545;
+    color: #fff;
+    border-color: #dc3545;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #6c757d;
+    color: #fff;
+    border-color: #6c757d;
+}
