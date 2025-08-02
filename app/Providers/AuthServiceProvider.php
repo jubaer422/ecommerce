@@ -2,13 +2,15 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Notifications\Messages\MailMessage;
 
 class AuthServiceProvider extends ServiceProvider
 {
     /**
-     * The model to policy mappings for the application.
+     * The policy mappings for the application.
      *
      * @var array<class-string, class-string>
      */
@@ -18,13 +20,18 @@ class AuthServiceProvider extends ServiceProvider
 
     /**
      * Register any authentication / authorization services.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         $this->registerPolicies();
 
-        //
+        // Customize the email verification notification if needed (optional)
+        VerifyEmail::toMailUsing(function ($notifiable, $url) {
+            return (new MailMessage)
+                ->subject('Verify Your Email Address')
+                ->line('Click the button below to verify your email address.')
+                ->action('Verify Email', $url)
+                ->line('If you did not create an account, no further action is required.');
+        });
     }
 }

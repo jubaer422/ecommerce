@@ -1,27 +1,31 @@
-<x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600">
-        {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
-    </div>
+@extends('layouts.app')
+
+@section('content')
+<div class="container mt-5" style="max-width: 500px;">
+    <h2 class="mb-4 text-center">Confirm Your Password</h2>
 
     <form method="POST" action="{{ route('password.confirm') }}">
         @csrf
 
-        <!-- Password -->
-        <div>
-            <x-input-label for="password" :value="__('Password')" />
+        <!-- Password Input -->
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" id="password" class="form-control @error('password') is-invalid @enderror"
+                   name="password" required>
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            @error('password')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
 
-        <div class="flex justify-end mt-4">
-            <x-primary-button>
-                {{ __('Confirm') }}
-            </x-primary-button>
+        <!-- Submit Button -->
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Confirm Password</button>
         </div>
     </form>
-</x-guest-layout>
+
+    <div class="mt-3 text-center">
+        <a href="{{ route('login') }}">Remembered your password? Login</a>
+    </div>
+</div>
+@endsection
